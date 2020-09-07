@@ -1,0 +1,45 @@
+{
+  "name": "webpackvue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack  --mode development --watch",
+    "watch": "webpack-dev-server  --mode development",
+    "start": "npm run build -- --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7",
+    "babel-loader": "^8",
+    "clean-webpack-plugin": "^3",
+    "css-loader": "^4",
+    "eslint": "^7",
+    "eslint-config-airbnb": "^18",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-jsx-a11y": "^6",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-react-hooks": "^4",
+    "eslint-plugin-vue": "^6",
+    "html-webpack-plugin": "^4",
+    "mini-css-extract-plugin": "^0",
+    "rimraf": "^3",
+    "sass-loader": "^9",
+    "style-loader": "^1",
+    "vue-loader": "^15",
+    "vue-style-loader": "^4",
+    "vue-template-compiler": "^2",
+    "webpack": "^4",
+    "webpack-cli": "^3",
+    "webpack-dev-server": "^3"
+  },
+  "dependencies": {
+    "file-loader": "^6",
+    "node-sass": "^4",
+    "sass": "^1",
+    "vue": "^2"
+  }
+}
