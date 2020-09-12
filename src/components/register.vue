@@ -1,16 +1,69 @@
 <template>
-  <div class="container">
-     <home />
-    <router-view />
-
-  </div>
+  <div id="register">
+    <div class="compo-container">
+      <div class="input-wrapper">
+        <label class="input-label">نام کاربری</label>
+        <input
+          v-model="name"
+          type="text"
+          placeholder="نام کاربری"
+        >
+      </div>
+      <div class="input-wrapper">
+        <label class="input-label">کد ملی</label>
+        <input
+          v-model="nationalCode"
+          type="text"
+          placeholder="کد ملی"
+        >
+      </div>
+      <div class="input-wrapper">
+        <label class="input-label">شماره همراه</label>
+        <input
+          v-model="phoneNumber"
+          type="text"
+          placeholder="تلفن همراه"
+        >
+      </div>
+      <div class="input-wrapper">
+        <label class="input-label">رمز عبور</label>
+        <input
+          v-model="password"
+          type="password"
+          placeholder="رمز عبور"
+        >
+      </div>
+      <div class="input-wrapper">
+        <label class="input-label">تکرار رمز عبور</label>
+        <input
+          v-model="passwordConfirmation"
+          type="password"
+          placeholder="رمز عبور"
+        >
+      </div>
+      <div class="input-wrapper">
+        <button
+          class="submit"
+          @click="check()"
+        >
+          ثبت نام
+        </button>
+      </div>
+      <div v-if="errorsBag.length">
+        <ul class="errorBag">
+          <li
+            v-for="error in errorsBag"
+            :key="error.index"
+          >
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>  
+  </div>  
 </template>
 <script>
-import home from './components/home.vue';
 export default {
-  components: {
-    home,
-  },
   data() {
     return {
       name: '',
@@ -19,7 +72,6 @@ export default {
       password: '',
       passwordConfirmation: '',
       errorsBag: [],
-      usersList: [],
     };
   },
   methods: {
@@ -39,16 +91,6 @@ export default {
         .then((response) => response.json());
       // .then((data) => (this.postId = data.id));
     },
-    getUsers() {
-      const getUsersOpt = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      };
-
-      fetch('http://127.0.0.1:9000/user/list', getUsersOpt)
-        .then((response) => response.json())
-        .then((data) => { (this.usersList = data); });
-    },
     check() {
       this.errorsBag = [];
       if (this.checkUser()
@@ -66,14 +108,14 @@ export default {
       const pName = /^(?=.{3,20}$)(?![_.])(?![0-9])[a-zA-Z0-9._]+(?<![_.])$/;
       if (this.name.length === 0) {
         this.errorsBag.push('وارد کردن نام کربری الزامیست');
-        // return false;
+        return false;
       }
       if (pName.test(this.name)) {
-        // return true;
+        return true;
       }
 
       this.errorsBag.push('نام کاربری نامعتبر است');
-      // return false;
+      return false;
     },
     // CHECK NATIONAL CODE
     checkNationalCode() {
