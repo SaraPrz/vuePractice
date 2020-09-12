@@ -108,4 +108,9 @@ text-align: center;
   background: #646464;
   padding: 12px;
 }
+.submit a {
+  text-decoration: none;
+  color: #fff;
+}
+
 </style>

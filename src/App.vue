@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-     <home />
-    <router-view />
 
+    <router-view />
+     <home />
   </div>
 </template>
 <script>

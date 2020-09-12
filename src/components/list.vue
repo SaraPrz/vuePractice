@@ -20,10 +20,13 @@
               پسورد
             </th>
             <th>
-              nationalId
+              کد ملی
             </th>
             <th>
-              mobile
+              شماره همراه
+            </th>
+            <th>
+              فعال
             </th>
           </thead>
           <tbody>
@@ -42,6 +45,9 @@
               </td>
               <td>
                 {{ member.mobilePhone }}
+              </td>
+              <td>
+                {{ member.active }}
               </td>
             </tr>
           </tbody>

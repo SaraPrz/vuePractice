@@ -42,6 +42,10 @@
         >
       </div>
       <div class="input-wrapper">
+        <input type="checkbox" v-model="activeUser">
+        <label for="vehicle1"> کاربر فعال</label><br>
+      </div>
+      <div class="input-wrapper">
         <button
           class="submit"
           @click="check()"
@@ -71,6 +75,7 @@ export default {
       phoneNumber: '',
       password: '',
       passwordConfirmation: '',
+      activeUser: '',
       errorsBag: [],
     };
   },
@@ -84,6 +89,7 @@ export default {
           password: this.password,
           nationalID: this.nationalCode,
           mobilePhone: this.phoneNumber,
+          active:this.activeUser,
         }),
       };
 
@@ -181,6 +187,11 @@ export default {
       }
       return true;
     },
+    checkActiveUser() {
+      if (activeUser !=false) {
+        return true;
+      }
+    }
   },
 };
 </script>
