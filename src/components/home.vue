@@ -11,9 +11,7 @@
         ثبت نام
        </router-link>
       </button>
-    </div>
-    <div class="input-wrapper">
-      <button
+            <button
       class="getUserList"
       >
       <router-link
@@ -91,7 +89,7 @@ text-align: center;
 .submit {
   background-color: #2278e6;
   border: none;
-  padding: 9px 29px;
+  padding: 12px 29px;
   color: white;
   border-radius: 3px;
 }
@@ -101,6 +99,10 @@ text-align: center;
   background: #00ae00;
   color: white;
   border-radius: 3px;
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
 }
 .compo-container {
   max-width: 1200px;
@@ -112,5 +114,78 @@ text-align: center;
   text-decoration: none;
   color: #fff;
 }
+.modal-backdrop {
+  position: fixed;
+  top: 160px;
+  bottom: 160px;
+  left: 200px;
+  right: 600px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
 
+.modal {
+  background: #FFFFFF;
+  box-shadow: 1px 1px 11px -3px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  position: fixed;
+  top: 160px !important;
+  bottom: 160px !important;
+  left: 200px !important;
+  right: 600px !important;
+  height: 400px;
+}
+
+.modal-backdrop > div {
+  display: block;
+}
+
+.modal-header,
+.modal-footer {
+  padding: 15px;
+  display: flex;
+}
+
+.modal-header {
+  border-bottom: 1px solid #eeeeee;
+  color: #4AAE9B;
+  justify-content: space-between;
+}
+
+.modal-footer {
+  border-top: 1px solid #eeeeee;
+  justify-content: flex-end;
+}
+
+.modal-body {
+  position: relative;
+  padding: 20px 10px;
+}
+
+.btn-close {
+  border: none;
+  font-size: 20px;
+  padding: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #4AAE9B;
+  background: transparent;
+}
+
+.btn-green {
+  color: white;
+  background: #4AAE9B;
+  border: 1px solid #4AAE9B;
+  border-radius: 2px;
+}
+
+footer >button {
+  cursor: pointer;
+}
 </style>

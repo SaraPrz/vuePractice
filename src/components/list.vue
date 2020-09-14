@@ -6,9 +6,10 @@
           class="getUserList"
           @click="getUsers()"
         >
-          مشخصات افراد ثبت نام شده
+          لیست کاربران
         </button>
-        <table
+        <div v-if="!isloading">
+          <table
           v-if="usersList.length>0"
           class="userList"
         >
@@ -26,8 +27,9 @@
               شماره همراه
             </th>
             <th>
-              فعال
-            </th>
+            <button @click="filterData(false)">غیر فعال</button>
+            <button @click="filterData(true)">فعال</button>
+          </th>
           </thead>
           <tbody>
             <tr
@@ -35,8 +37,13 @@
               :key="member.nationalId"
             >
               <td>
-                {{ member.username }}
-              </td>
+            <button
+              type="button"
+              class="btn color-user"
+              @click="showdata(member)"
+            >
+              {{ member.username }}
+            </button>
               <td>
                 {{ member.password }}
               </td>
@@ -52,7 +59,56 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
+      <div v-if="show">
+      <transition name="modal-fade">
+        <div class="modal-backdrop">
+          <div class="modal"
+            role="dialog"
+            aria-labelledby="modalTitle"
+            aria-describedby="modalDescription"
+          >
+            <header
+              class="modal-header"
+              id="modalTitle"
+            >
+              <slot name="header">
+                نمایش اطلاعات کاربر ثبت نام شده
+
+              </slot>
+            </header>
+            <section
+              class="modal-body"
+              id="modalDescription"
+            >
+               <!--CONTENT MODAL-->
+              <slot name="body">
+                <div v-if="modalUserShow.active===true">
+                  {{ modalUserShow.username | upperUser }}  /
+                  {{ modalUserShow.nationalID }}   /
+                  {{ modalUserShow.mobilePhone | changePhone }}
+                </div>
+                <div v-else>
+                کاربر فعال نمی باشد
+                </div>
+              </slot>
+            </section>
+            <footer class="modal-footer">
+              <slot name="footer">
+                <button
+                  type="button"
+                  @click="closeModal"
+                  aria-label="Close modal"
+                >
+                  بستن
+                </button>
+              </slot>
+            </footer>
+          </div>
+        </div>
+      </transition>
+    </div>
     </div>
   </div>
 </template>
@@ -61,6 +117,11 @@ export default {
   data() {
     return {
       usersList: [],
+      modalUserShow: '',
+      show: false,
+      // users: null,
+      isloading: true,
+      filter: '',
     };
   },
   methods: {
@@ -72,7 +133,38 @@ export default {
 
       fetch('http://127.0.0.1:9000/user/list', getUsersOpt)
         .then((response) => response.json())
-        .then((data) => { (this.usersList = data); });
+        .then((data) => { 
+          (this.usersList = data); 
+          this.infoData = data;
+          this.isloading = false;
+          });
+        
+    },
+    showdata(userData) {
+      this.show = true;
+      this.modalUserShow = userData;
+    },
+    closeModal() {
+      this.show = false;
+    },
+    filterData(showfilter) {
+      if (showfilter) {
+        this.usersList = this.infoData.filter((member) => member.active === true);
+      } else {
+        this.usersList = this.infoData.filter((member) => member.active === false);
+      }
+    },
+  },
+  filters: {
+    upperUser(value) {
+      // eslint-disable-next-line no-param-reassign
+      value = value.toString();
+      return value.toUpperCase().trim();
+    },
+    changePhone(phone) {
+      // eslint-disable-next-line no-param-reassign
+      phone = phone.toString();
+      return `+98${phone.slice(1)}`;
     },
   },
 };
