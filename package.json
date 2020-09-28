@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "file-loader": "^6",
+    "font-awesome": "^4.7.0",
     "node-sass": "^4",
     "sass": "^1",
     "vue": "^2",

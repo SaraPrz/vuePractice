@@ -2,14 +2,23 @@
   <div class="container">
 
     <router-view />
-     <home />
+    <Header />
+    <home />
+    <Slider />
+    <Footer />
   </div>
 </template>
 <script>
+import Header from './components/header.vue';
 import home from './components/home.vue';
+import Slider from './components/slider.vue';
+import Footer from './components/footer.vue';
 export default {
   components: {
+    Header,
     home,
+    Slider,
+    Footer,
   },
   data() {
     return {

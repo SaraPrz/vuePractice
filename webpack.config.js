@@ -23,7 +23,7 @@ module.exports = {
         use: 'vue-loader',
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+        test: /\.(woff|woff2|eot|ttf|otf|svg|jpe?g|)$/,
         use: [
           'file-loader',
         ],

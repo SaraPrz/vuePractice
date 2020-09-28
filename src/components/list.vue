@@ -1,6 +1,11 @@
 <template>
   <div id="list">
     <div class="compo-container">
+      <modal
+        v-if="show"
+        :name= "modalUserShow"
+        @close="show=false"
+      />
       <div class="input-wrapper">
         <button
           class="getUserList"
@@ -113,7 +118,10 @@
   </div>
 </template>
 <script>
+import Modal from './modal.vue';
+
 export default {
+  name: Modal,
   data() {
     return {
       usersList: [],
@@ -123,6 +131,9 @@ export default {
       isloading: true,
       filter: '',
     };
+  },
+    components: {
+    Modal,
   },
   methods: {
     getUsers() {
